@@ -1,0 +1,3 @@
+[submodule "vite-project-submodlue"]
+	path = vite-project-submodlue
+	url = https://github.com/twomiya/vite-project.git

@@ -16,8 +16,35 @@ app.all("*", function (req, res, next) {
   next();
 });
 
-app.get("/", (req, res) => res.json({ a: "test" }));
-app.post("/test/test", (req, res) => {
+app.get("/api/list", (req, res) =>
+  res.json({
+    code: 200,
+    list: [
+      {
+        id: 1,
+        title: "文章标题1",
+        content: "contentcontentcontentcontentcontentcontentcontent",
+        image:
+          "https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png",
+      },
+      {
+        id: 2,
+        title: "文章标题2",
+        content: "contentcontentcontentcontentcontentcontentcontent2",
+        image:
+          "https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png",
+      },
+      {
+        id: 3,
+        title: "文章标题3",
+        content: "contentcontentcontentcontentcontentcontentcontent3",
+        image:
+          "https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png",
+      },
+    ],
+  })
+);
+app.post("/login", (req, res) => {
   console.log(req);
   res.json({ data: req.body });
 });
