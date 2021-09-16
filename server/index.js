@@ -3,7 +3,7 @@ const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const app = express();
 const port = 6060;
-
+const model = require("./model");
 var bodyParser = require("body-parser"); /*post方法*/
 app.use(bodyParser.json()); // 添加json解析
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -59,7 +59,8 @@ app.get("/api/list", (req, res) =>
     ],
   })
 );
-app.post("/login", (req, res) => {
+app.post("/api/login", (req, res) => {
+  console.log(req, "req");
   res.json({
     status: true,
     data: {
@@ -69,6 +70,20 @@ app.post("/login", (req, res) => {
   });
   // console.log(req);
   // res.json({ data: req.body });
+});
+
+app.post("/api/create", (req, res) => {
+  console.log(req.body);
+  res.json({
+    status: true,
+    message: "创建成功！",
+  });
+  console.log(model, "model");
+  model.connect((db) => {
+    db.collection("list").insert(req.body, function (err, result) {
+      console.log(result, "dbdbbd");
+    });
+  });
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
